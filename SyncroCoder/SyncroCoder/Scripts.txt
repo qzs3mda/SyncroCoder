@@ -1,0 +1,62 @@
+﻿CREATE TABLE Usuario (
+    Id int IDENTITY(1,1) NOT NULL,
+    nombre varchar(100) NOT NULL,
+    apellido varchar(100) NOT NULL,
+    nombreUsuario varchar(100) NOT NULL,
+	contraseña varchar(100) NOT NULL,
+	mail varchar(100) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE Venta (
+    Id int IDENTITY(1,1) NOT NULL,
+    comentarios varchar(100) NOT NULL,
+    idUsuario int NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+
+CREATE TABLE ProductoVendido (
+    id int IDENTITY(1,1) NOT NULL,
+    idProducto int NOT NULL,
+    stock int NOT NULL,
+	idVenta int NOT NULL
+    PRIMARY KEY (Id)
+);
+
+CREATE TABLE Producto (
+    id int IDENTITY(1,1) NOT NULL,
+    descripcion varchar(100) NOT NULL,
+    costo float NOT NULL,
+	precioVenta float NOT NULL,
+    stock int NOT NULL,
+	idUsuario int NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+
+
+Insert into Usuario (nombre,apellido, nombreUsuario, contraseña, mail) values ('Damian','Gonzalez','dgonzalez','1234','dgonzalez@mail.com')
+Insert into Usuario (nombre,apellido, nombreUsuario, contraseña, mail) values ('Soledad','Airala','sairala','1234','sairala@mail.com')
+insert into usuario (nombre, apellido, nombreusuario, contraseña, mail) values ('test', 'test', 'test-test', '123','a@a.com')
+
+
+
+insert into venta (comentarios, idUsuario) values ('Venta a cliente: Damian Gonzalez', 1)
+insert into venta (comentarios, idUsuario) values ('Venta a cliente: Soledad Airala', 2)
+
+
+insert into Producto (descripcion, costo, precioVenta, stock, idUsuario) values ('Shampoo',400,800,100,1)
+insert into Producto (descripcion, costo, precioVenta, stock, idUsuario) values ('Jabon en polvo',300,600,100,1)
+insert into Producto (descripcion, costo, precioVenta, stock, idUsuario) values ('Detergente',200,400,100,1)
+insert into Producto (descripcion, costo, precioVenta, stock, idUsuario) values ('Lavandina',100,200,100,1)
+insert into Producto (descripcion, costo, precioVenta, stock, idUsuario) values ('Limpia piso',50,100,100,1)
+insert into Producto (descripcion, costo, precioVenta, stock, idusuario) values ('Gaseosas', 280, 450, 100, 2)
+insert into Producto (descripcion, costo, precioVenta, stock, idUsuario) values ('test', 100, 200, 100, 3)
+
+
+insert into ProductoVendido (idProducto, stock, idVenta) values (1,1,1)
+insert into ProductoVendido (idProducto, stock, idVenta) values (2,1,1)
+insert into ProductoVendido (idProducto, stock, idVenta) values (3,2,2)
+insert into ProductoVendido (idProducto, stock, idVenta) values (4,1,2)
+insert into ProductoVendido (idProducto, stock, idVenta) values (6,1,2)
