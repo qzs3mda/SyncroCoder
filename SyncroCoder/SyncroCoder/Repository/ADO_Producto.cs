@@ -56,7 +56,8 @@ namespace SyncroCoder.Repository
 
         public static void CrearProducto(string descripcion, double costo, double precioVenta, int stock, int idUsuario)
         {
-            SqlConnection conexion = new SqlConnection("server=localhost\\SQLEXPRESS ; database=SyncroCoder ; integrated security = true");
+            SqlConnection conexion = new SqlConnection("Data Source=.\\SQLEXPRESS ; Initial Catalog = SyncroCoder; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //SqlConnection conexion = new SqlConnection("server=localhost\\SQLEXPRESS ; database=SyncroCoder ; integrated security = true");
             conexion.Open();
             string query = "Insert into Producto (descripcion, costo, precioVenta, stock, idUsuario) values (@descripcion, @costo, @precioVenta, @stock, @idUsuario)";
             SqlCommand comando = new SqlCommand(query, conexion);

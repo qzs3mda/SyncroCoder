@@ -12,15 +12,15 @@ namespace SyncroCoder.Controllers
 
         [HttpGet(Name = "GetUsuarios")]
 
-        public void GetUsuarioAPI(string nombreUsuario)
+        public List<Models.Usuario> GetUsuarioAPI(string nombreUsuario)
         {
-            ADO_Usuario.GetUsuario(nombreUsuario);
+            return ADO_Usuario.GetUsuario(nombreUsuario);
         }
 
 
         [HttpPost(Name = "CrearUsuario")]
 
-        public void CrearUsuarioAPI(Usuario usuario)
+        public static void CrearUsuarioAPI(Usuario usuario)
         {
             ADO_Usuario.CrearUsuario(usuario);
         }
@@ -31,6 +31,22 @@ namespace SyncroCoder.Controllers
         public void UpdateUsuarioAPI(Usuario usuario)
         {
             ADO_Usuario.UpdateUsuario(usuario);
+        }
+
+
+        [HttpDelete(Name = "EliminarUsuario")]
+
+        public IActionResult EliminarUsuarioAPI([FromBody] int id)
+        {
+            try
+            {
+                ADO_Usuario.EliminarUsuario(id);
+                return Ok(new { mesagge = "Usuario eliminado correctamente"});
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

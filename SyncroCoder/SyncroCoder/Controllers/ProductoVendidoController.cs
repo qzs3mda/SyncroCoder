@@ -12,9 +12,9 @@ namespace SyncroCoder.Controllers
 
         [HttpGet(Name = "GetProductosVendidos")]
 
-        public List<Models.ProductoVendido> Get()
+        public List<Models.ProductoVendido> Get(int IdUsuario)
         {
-            return ADO_ProductoVendido.GetProductoVendido();
+            return ADO_ProductoVendido.GetProductoVendido(IdUsuario);
         }
     }
 }

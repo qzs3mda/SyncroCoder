@@ -6,9 +6,11 @@ namespace SyncroCoder.Repository
 {
     public class ADO_ProductoVendido
     {
-        public static List<ProductoVendido> GetProductoVendido()
+        public static List<ProductoVendido> GetProductoVendido(int IdUsuario)
         {
-            List<Producto> productos = ADO_Producto.GetProductoFromDatabase(2);
+            //Producto idUsuarioproducto = new Producto();
+
+            List<Producto> productos = ADO_Producto.GetProductoFromDatabase(IdUsuario);
             var listaIdsProducto = new List<int>();
 
             foreach (Producto producto in productos)
@@ -56,6 +58,27 @@ namespace SyncroCoder.Repository
             }*/
 
             return listaProductoVendido;
+        }
+
+        public static List<ProductoVendido> GetProductoVendidoByIdVenta(int idVenta)
+        {
+            SqlConnection conexion = new SqlConnection("server=localhost\\SQLEXPRESS ; database=SyncroCoder ; integrated security = true");
+            conexion.Open();
+            string query = "Select idProducto from ProductoVendido where idVenta = @idVenta";
+            SqlCommand comando = new SqlCommand(query, conexion);
+            comando.Parameters.AddWithValue("@idVenta", idVenta);
+            SqlDataReader registro = comando.ExecuteReader();
+
+            var listaDeIdProducto = new List<ProductoVendido>();
+
+            while (registro.Read())
+            {
+                ProductoVendido productoVendido = new ProductoVendido();
+                listaDeIdProducto.Add(productoVendido);
+                productoVendido.idProducto = Convert.ToInt32(registro.GetValue(0));
+            }
+
+            return listaDeIdProducto;
         }
     }
 }

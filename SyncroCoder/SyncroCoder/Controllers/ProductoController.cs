@@ -26,7 +26,7 @@ namespace SyncroCoder.Controllers
         }
 
 
-        [HttpPut(Name = "UpdateProducto")]
+        [HttpPut("{id}")]
 
         public void UpdateProductoAPI(int id, string descripcion, double costo, double precioVenta, int stock, int idUsuario)
         {
@@ -34,7 +34,7 @@ namespace SyncroCoder.Controllers
         }
 
 
-        [HttpDelete(Name = "DeleteProducto")]
+        [HttpDelete(Name = "EliminarProducto")]
 
         public void EliminarProductoAPI([FromBody] int id)
         {

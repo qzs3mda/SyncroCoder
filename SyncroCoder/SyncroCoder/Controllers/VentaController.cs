@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SyncroCoder.Models;
 using SyncroCoder.Repository;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 
 namespace SyncroCoder.Controllers
 {
@@ -11,11 +14,19 @@ namespace SyncroCoder.Controllers
     public class VentaController : ControllerBase
     {
 
-        [HttpGet(Name = "GetVentas")]
+        [HttpGet("GetVentas")]
 
         public List<Models.Venta> GetVentaAPI()
         {
             return ADO_Venta.GetVenta();
+        }
+
+
+        [HttpGet("GetVentasCompleto")]
+
+        public List<VentasCompleto> GetVentaCompletoAPI()
+        {
+            return ADO_Venta.GetVentasCompleto();
         }
 
 
@@ -29,9 +40,9 @@ namespace SyncroCoder.Controllers
 
         [HttpDelete(Name = "DeleteVentas")]
 
-        public void DeleteVentaAPI([FromBody] List<ProductoVendido> productosVendido, int id)
+        public void DeleteVentaAPI([FromBody] int idVenta)
         {
-            ADO_Venta.DeleteVenta(productosVendido, id);
+            ADO_Venta.DeleteVenta(idVenta);
         }
     }
 }
